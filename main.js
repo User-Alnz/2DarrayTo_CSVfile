@@ -1,60 +1,52 @@
-var array2D = [
-    [ "name",  "role",      "city",   "wage"],
-    [ "Paul",  "sale",      "Lyon",    34000], 
-    [ "Marie", "manager",   "Lyon",    37000],   
-    [ "Paul",  "assistant", "Paris",   24000]];
 
-    
-function main(array2D)
+var array2D = [[ "names",  "role",      "city",   "wage", "old_role"],
+                [ "Paul",  "sale",      "Lyon",    34000, "assistant"], 
+                [ "Marie", "manager",   "Lyon",    37000, "assistant"],   
+                [ "Paul",  "assistant", "Paris",   24000, "assistant"]];
+
+function    Transform2DarrayToString(array2D)
 {
-    var     csv;
+
     var     idxRow;
+    var     idxColumn;
     var     rowLength;
-    var     temp;
+    var     columnLength;
+    var     string;
 
     idxRow = 0;
-    rowLength = array2D[0].length;
+    idxColumn = 0;
+    rowLength = array2D.length;
+    columnLength = array2D[0].length;
+    string = '';
     
+    console.log("I am array2D: ", array2D);
+    console.log("rowLength : ", rowLength);
+    console.log("columnLength: ", columnLength);
+
     while(idxRow < rowLength)
     {
-            temp = array2D[idxRow];
-            //console.log(array2D);
-            //console.log(temp);
-            //addComa(temp);
-            addComa(temp);
-            csv = createNewTab(temp, rowLength);
-            console.log(temp);
-
-            idxRow++;
+        idxColumn = 0;
+                while(idxColumn < columnLength) // -1 to exclude last column from adding coma
+                {
+                    if(idxColumn === columnLength-1) // if last column of the row which we are reading
+                    {
+                        string += array2D[idxRow][idxColumn];
+                        string += '\n';
+                    }
+                    else
+                    {
+                        array2D[idxRow][idxColumn] += ','
+                        string += array2D[idxRow][idxColumn];
+                    }
+                    
+                    idxColumn++;
+                }
+        idxRow++;
     }
-
-    return(csv)
-}
-
-//test = ['name', 'role', 'city', 'wage'];
-
-function addComa(test)
-{
-    var     idx = 0;
-    var     length = test.length;
     
-    while(idx < length-1)
-    {
-        test[idx] += ','; 
-        //console.log(test[idx]);
-        idx++;
-    }
-    //console.log(test);
-    return(test);
+    console.log(string);
+    return(string);
 }
 
-function createNewTab(temp, tabLength)
-{
-    var    newTab;
 
-    newTab = []
-
-}
-
-//readtest(test);
-main(array2D);
+Transform2DarrayToString(array2D);
