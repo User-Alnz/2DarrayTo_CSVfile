@@ -1,12 +1,18 @@
 
-var array2D = [[ "names",  "role",      "city",   "wage", "old_role"],
+var array2D = [ [ "names",  "role",      "city",   "wage", "old_role"],
                 [ "Paul",  "sale",      "Lyon",    34000, "assistant"], 
                 [ "Marie", "manager",   "Lyon",    37000, "assistant"],   
                 [ "Paul",  "assistant", "Paris",   24000, "assistant"]];
 
+
+function main()
+{
+    const TempStoreString = Transform2DarrayToString(array2D);
+    encodeToBinary(TempStoreString);
+} 
+
 function    Transform2DarrayToString(array2D)
 {
-
     var     idxRow;
     var     idxColumn;
     var     rowLength;
@@ -17,12 +23,11 @@ function    Transform2DarrayToString(array2D)
     idxColumn = 0;
     rowLength = array2D.length;
     columnLength = array2D[0].length;
-    string = '';
+    string = ''; //Initate var to be char type.
     
-    console.log("I am array2D: ", array2D);
-    console.log("rowLength : ", rowLength);
-    console.log("columnLength: ", columnLength);
-
+    //console.log("I am array2D: ", array2D);
+    //console.log("rowLength : ", rowLength);
+    //console.log("columnLength: ", columnLength);
     while(idxRow < rowLength)
     {
         idxColumn = 0;
@@ -35,18 +40,35 @@ function    Transform2DarrayToString(array2D)
                     }
                     else
                     {
-                        array2D[idxRow][idxColumn] += ','
+                        array2D[idxRow][idxColumn] += ',';
                         string += array2D[idxRow][idxColumn];
                     }
-                    
                     idxColumn++;
                 }
         idxRow++;
     }
-    
-    console.log(string);
     return(string);
 }
 
+function encodeToBinary(string)
+{
+    var     intInUnicode;
+    var     hexadecimalString;
+    var     index;
+    var     stringLength;
 
-Transform2DarrayToString(array2D);
+    hexadecimalString = '';
+    index = 0;
+    stringLength = string.length;
+    
+    while(index < stringLength)
+    {
+        intInUnicode = string.charCodeAt(index); // transform char into int 
+        hexadecimalString += `${intInUnicode.toString(16).padStart(2, '0')}`; // transform char into hexadecimal with toString(16)
+        index++;
+    }
+    console.log(hexadecimalString);
+    return(hexadecimalString);
+}
+
+main();
