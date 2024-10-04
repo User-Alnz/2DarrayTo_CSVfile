@@ -1,3 +1,5 @@
+/*/!\ Project not done yet. To finish create web server to acces file system and use fs.writefile()
+https://docs.microfocus.com/SM/9.51/Hybrid/Content/programming/javascript/reference/javascript_global_method_writefile.htm /!\ */
 
 var array2D = [ [ "names",  "role",      "city",   "wage", "old_role"],
                 [ "Paul",  "sale",      "Lyon",    34000, "assistant"], 
@@ -67,6 +69,7 @@ function encodeToBinary(string)
         hexadecimalString += `${intInUnicode.toString(16).padStart(2, '0')}`; // transform char into hexadecimal with toString(16)
         index++;
     }
+    console.log(string);
     console.log(hexadecimalString);
     return(hexadecimalString);
 }
